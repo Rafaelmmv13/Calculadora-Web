@@ -1,0 +1,18 @@
+name: Notificacion DevOps ITLA
+
+# Se activa cada vez que subes algo a la rama main
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  envio_alerta:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      - name: Enviar mensaje a ntfy.sh
+        run: |
+          curl -d "Práctica completada: Integración Continua activa. Código subido por un estudiante del ITLA." \
+               ntfy.sh/devops-itla
